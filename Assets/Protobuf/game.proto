@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package GameMessage;
+
+// server to client
+message PlayerStat {
+  float x = 2;
+  float y = 3;
+  uint32 health = 4;
+}
+
+message Bullet {
+  int32 id = 1;
+  float x = 2;
+  float y = 3;
+  float vx = 4;
+  float vy = 5;
+  int32 playerid = 6;
+}
+
+message BulletSpawn
+{
+  Bullet bullet = 1;
+}
+
+// client to server
+message MovingDirection {
+  float vx = 1;
+  float vy = 2;
+}
+
+message IsShot {
+
+}
+
+message GameStateMessage
+{
+  PlayerStat playerStat = 1;
+  repeated Bullet bullets = 2; 
+}
+
+
+// indicate the status of the game
+// 0 - waiting state
+// 1 - game start
+// 2 - win
+// 3 - lose
+message Status
+{
+  uint32 status = 1; 
+}
